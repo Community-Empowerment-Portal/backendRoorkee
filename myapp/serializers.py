@@ -30,6 +30,7 @@ class StateSerializer(TimeStampedModelSerializer):
         fields = ['id', 'state_name', 'created_at']
 
 class DepartmentSerializer(TimeStampedModelSerializer):
+    state = serializers.PrimaryKeyRelatedField(queryset=State.objects.all(), source='state.state_name')
     class Meta:
         model = Department
         fields = '__all__'
