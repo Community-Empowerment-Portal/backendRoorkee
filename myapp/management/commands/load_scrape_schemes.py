@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Define the paths to the scripts
-        puppeteer_script_path = os.path.join(os.path.dirname(__file__), '../../scripts/puppeteer_script.js')
+        puppeteer_script_path = os.path.join(os.path.dirname(__file__), '../../../scripts/puppeteer_script.js')
         gemini_api_script_path = os.path.join(os.path.dirname(__file__), 'process_gemini_api.py')
         gemini_api_output_path = os.path.join(os.path.dirname(__file__), 'gemini_processed_data.json')
 
