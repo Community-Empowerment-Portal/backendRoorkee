@@ -16,6 +16,7 @@ myapp/__pycache__/
 myapp/migrations/
 myapp/__pycache__/
 mysite/__pycache__/
+/node_modules
 
 __pycache__/
 
