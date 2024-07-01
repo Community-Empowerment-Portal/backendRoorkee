@@ -27,7 +27,7 @@ class TimeStampedModelSerializer(serializers.ModelSerializer):
 class StateSerializer(TimeStampedModelSerializer):
     class Meta:
         model = State
-        fields = '__all__'
+        fields = ['id', 'state_name', 'created_at']
 
 class DepartmentSerializer(TimeStampedModelSerializer):
     class Meta:
@@ -39,17 +39,28 @@ class OrganisationSerializer(TimeStampedModelSerializer):
         model = Organisation
         fields = '__all__'
 
-class SchemeSerializer(TimeStampedModelSerializer):
-    class Meta:
-        model = Scheme
-        fields = '__all__'
+
 
 class BeneficiarySerializer(TimeStampedModelSerializer):
     class Meta:
         model = Beneficiary
         fields = '__all__'
 
+class SponsorSerializer(TimeStampedModelSerializer):
+    class Meta:
+        model = Sponsor
+        fields = '__all__'
+
+class SchemeSerializer(TimeStampedModelSerializer):
+    department = DepartmentSerializer()
+    beneficiaries = BeneficiarySerializer(many=True)
+    sponsors = SponsorSerializer(many=True)
+    class Meta:
+        model = Scheme
+        fields = '__all__'
+
 class SchemeBeneficiarySerializer(TimeStampedModelSerializer):
+    beneficiary = BeneficiarySerializer()
     class Meta:
         model = SchemeBeneficiary
         fields = '__all__'
@@ -76,17 +87,16 @@ class DocumentSerializer(serializers.ModelSerializer):
 
 class SchemeDocumentSerializer(serializers.ModelSerializer):
     document = DocumentSerializer()
+    document = DocumentSerializer()
 
     class Meta:
         model = SchemeDocument
         fields = ['id', 'created_at', 'scheme', 'document']
 
-class SponsorSerializer(TimeStampedModelSerializer):
-    class Meta:
-        model = Sponsor
-        fields = '__all__'
+
 
 class SchemeSponsorSerializer(TimeStampedModelSerializer):
+    sponsor = serializers.StringRelatedField()
     class Meta:
         model = SchemeSponsor
         fields = '__all__'
