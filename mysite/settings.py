@@ -213,3 +213,4 @@ CELERY_ENABLE_UTC = True
 # CELERY_TIMEZONE = 'UTC'
 # mysite/celery.py
 
+AUTH_USER_MODEL = 'myapp.CustomUser'  # Replace 'myapp' with your app name

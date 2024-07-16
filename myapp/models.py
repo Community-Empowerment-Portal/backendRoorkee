@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 import pytz
 from django.contrib.auth.models import User
+from django.conf import settings
+
 
 
 class TimeStampedModel(models.Model):
@@ -39,7 +41,7 @@ class TimeStampedModel(models.Model):
 # myapp/models.py
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField(blank=True)
     preferences = models.JSONField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -49,7 +51,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class UserPreferences(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='preferences')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='preferences')
     preferred_categories = models.JSONField(default=list, blank=True)
     dark_mode = models.BooleanField(default=False)
     language = models.CharField(max_length=50, default='en')

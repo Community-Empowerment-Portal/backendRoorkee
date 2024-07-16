@@ -1,15 +1,12 @@
 from django.urls import path
-<<<<<<< HEAD
+
 from .views import UserProfileAPIView
 from .views import RecommendationsAPIView
 
-
-=======
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
->>>>>>> origin/main
 from .views import (
     StateListAPIView,
     StateDetailAPIView,

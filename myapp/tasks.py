@@ -129,5 +129,5 @@ from django.core.management import call_command
 
 @shared_task
 def scrape_and_process_schemes():
-    call_command('load_scrape_schemes')  
+    call_command('load_data')  
     print("Data loaded successfully.")
