@@ -2,18 +2,45 @@
   "states": [
     {
       "state_name": "Tamil Nadu",
-      
       "departments": [
         {
           "department_name": "Department of Education",
-          
           "organisations": [
             {
               "organisation_name": "Educational Board",
-              
               "schemes": [
                 {
-                  "scheme_id": "18b72340-9e36-42f1-a23d-6805a057b973",
+                  "scheme_id": "1764cb4e-1e2f-4b7f-ada5-2d07f8f91606",
+                  "department": "Agriculture and Farmers' Welfare Department",
+                  "scheme_name": "Agriculture Academic Studies",
+                  "description": "Sponsoring of seat for undergoing 4 years degree course in Agriculture/ Horticulture.",
+                  "scheme_beneficiary": "Students",
+                  "scheme_benefits": "Education Benefits",
+                  "how_to_avail": "Students who have passed 10+2 in Science can apply in prescribed form as and when it is so advertised.",
+                  "sponsors": "State",
+                  "lower_age": " -None- ",
+                  "upper_age": " -None- ",
+                  "introduced_on": "01 Apr 2014",
+                  "scheme_link": "https://meghalaya.gov.in/schemes/content/35910"
+                },
+                {
+                  "scheme_id": "3ae5f273-54b7-45e5-adff-2ed6559cb7f1",
+                  "department": "Border Areas Development Department",
+                  "scheme_name": "Border Areas Scholarship",
+                  "description": "Consequent upon the partition of India in 1947, the people inhabiting the Indo-Bangladesh Border suffered acute economic distress due to closure of normal trade channels with our neighbouring country. The people of those areas have been experiencing great difficulty to give proper education to their children on account of economic hardships and many students had to give up their studies in between due to the economic hardships faced by their parents. It was obvious that majority of the students hailing from those areas wereeconomically handicapped and hence could not catch up with those living in non- border areas. With a view to removing this handicap, a scheme for giving financial assistance to the students hailing from the international border areas under the nomenclature “Border Areas Scholarship” was introduced by the Border Areas Development Department, Government of Meghalaya.",
+                  "scheme_beneficiary": "Students",
+                  "scheme_benefits": "Scholarship, Stipend",
+                  "how_to_avail": "Offline applications have to be submitted through Head of Educational Institutions to Directorate of Higher & Technical Education, Shillongon release of the advertisement every year.",
+                  "sponsors": "State",
+                  "lower_age": " -None- ",
+                  "upper_age": " -None- ",
+                  "funding": "100%",
+                  "undefined": "0",
+                  "introduced_on": "01 Jan 1973",
+                  "scheme_link": "https://meghalaya.gov.in/schemes/content/37489"
+                },
+                {
+                  "scheme_id": "fa7b771b-644f-4465-a2f8-a8d56b197c06",
                   "scheme_name": "Grants under Article 275 (1) of the Constitution of India",
                   "description": "The objectives for programmes/activities funded with Grants-in-aid under Proviso to Art. 275(1) of the Constitution of India is to bridge the gap between Scheduled Tribe (ST) population and others by accelerating development of STs by ensuring:\n\na. Human resource development by enhancing their access to education and health services, \n\nb. Enhanced quality of life by raising the level of administration of the Scheduled Areas and also providing basic amenities in tribal areas / localities,\n\nc. Substantial reduction in poverty and unemployment through skill upgradation and other income generating opportunities, creation of backward and forward linkages and linkage with institutional finance for sustained income generation and creation of productive assets,\n\nd.Enhanced capacity to avail opportunities, gain rights &entitlements and improved facilities at par with other areas.",
                   "scheme_beneficiary": "SC/ST",
@@ -28,49 +55,113 @@
                   "scheme_link": "https://meghalaya.gov.in/index.php/schemes/content/37485"
                 },
                 {
-                  "scheme_id": "20a961f9-247d-402c-a223-b607af2ef112",
+                  "scheme_id": "9196e476-74fe-4a53-85ec-e82b1d431e81",
+                  "scheme_name": "Integrated Technology Enabled Agriculture Management System Or iTEAMS",
+                  "description": "Addressing the critical issue of enabling and facilitating access to remunerative and sustainable markets for farmers produce in the most transparent and effective manner through facilitation service iTEAM Dial 1917, whereby farmers can be assisted on the following activities.\n\n1)12/6 Physical Connectivity to Markets.\n\n2)Access to input suppliers and bidders.\n\n3)Tailor made advisory solutions on crops, Package of practices, Animal Health Care, etc.\n\n4)Assured logistics and Transport solutions at the rate of 0.20/kg/km.\n\n5)Livelihood options through leasing Agri Response Vehicle.",
+                  "scheme_beneficiary": "Farmers",
+                  "scheme_benefits": "Other",
+                  "how_to_avail": "Farmers can dial 1917 from any mobile phone to register with 1917 iTEAMS.",
+                  "sponsors": "State",
+                  "lower_age": " -None- ",
+                  "upper_age": " -None- ",
+                  "scheme_link": "https://meghalaya.gov.in/index.php/schemes/content/35896"
+                },
+                {
+                  "scheme_id": "f70e3a8d-7543-4ed0-b159-b9dd8d44d2c4",
                   "department": "Education Department",
-                  "scheme_name": " Primary School Scholarship and Upper Primary Scholarship",
-                  "description": "i)\tThe Examination cell of the Directorate of Educational Research and Training, conducts Scholarship Examinations for both Primary and Upper Primary students of the State since 2006. Interested students studying in class V and class VIII from all the schools of the state can appear for the examination.\nii)\tThe objectives are to identify and recognize students with academic talent, providing them a platform to appear in competitive examinations and to provide financial assistance to successful students. The examination is held in 63 centres in all the 15 sub divisions under the supervision of the Sub-Divisional School Education Officer (SDSEO).\niii)\t Advertisement regarding the conduct of the exam is widely published through leading newspapers of the State as well as through the office of the SDSEOs.\niv)\tThe tenure of the Primary/Upper Primary Scholarship is three years subject to good conduct and satisfactory progress.",
+                  "scheme_name": "National Talent Search Examination (NTSE)",
+                  "description": "NCERT’s aim is:\ni)\tTo identify talented students and nurture their talent\nii)\tAwarding candidates with scholarship in different stages of education",
                   "scheme_beneficiary": "Students",
                   "scheme_benefits": "Scholarship",
-                  "how_to_avail": "i)\tStudents applies through schools to SDSEOs\nii)\tSDSEOs send Student list to DERT \niii)\tDERT conduct exam\niv)\tSelected candidates will be avail scholarship by DSEL",
+                  "how_to_avail": "i)\tExamination is conducted every year at 2 (two) stages:\n        Stage I in November (State)(DERT)\n        Stage II in May (NCERT)\nii)\tStage 1 is conducted by DERT through written examination and recommended on the basis of merit and will be eligible \n        to appear for National level i.e Stage II examination which is conducted by NCERT\niii)\tState Quota 50\niv)\tThe selected 50 candidates have to appear for the National Level Examination (Stage II) which is conducted by NCERT\nv)\tAward of Scholarship is from Class XI upto higher qualifications",
+                  "sponsors": "Central",
+                  "lower_age": " -None- ",
+                  "upper_age": " -None- ",
+                  "funding": "100%",
+                  "introduced_on": "01 Jan 2008",
+                  "scheme_link": "https://meghalaya.gov.in/index.php/schemes/content/37589"
+                },
+                {
+                  "scheme_id": "a98589c3-5b4c-4541-9fd5-f4a3f4b235fa",
+                  "department": "Agriculture and Farmers' Welfare Department",
+                  "scheme_name": "Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)",
+                  "description": "Creation of Water Harvesting Structures at the Farm Level for efficient water conservation and management so as to promote double cropping and enhance crop production.",
+                  "scheme_beneficiary": "Farmers",
+                  "scheme_benefits": "Other",
+                  "how_to_avail": "Bonafide farmers can apply in plain paper through the nearest Agriculture Development Officer of a CD Block/ Agriculture Circle.",
+                  "sponsors": "Central",
+                  "lower_age": " -None- ",
+                  "upper_age": " -None- ",
+                  "scheme_link": "https://meghalaya.gov.in/index.php/schemes/content/35889"
+                },
+                {
+                  "scheme_id": "8b01125c-c1c3-42a4-8748-bd26944e1f7b",
+                  "department": "Agriculture and Farmers' Welfare Department",
+                  "scheme_name": "Ramie Crop",
+                  "description": "Encouraging cultivation of perennial and remunerative textile crop such as Ramie in suitable areas by providing necessary inputs and training.",
+                  "scheme_beneficiary": "Farmers",
+                  "scheme_benefits": "Land",
+                  "how_to_avail": "Bonafide farmers can apply in plain paper through the nearest Agriculture Development Officer of a CD Block/ Agriculture Circle",
+                  "sponsors": "State",
+                  "lower_age": " -None- ",
+                  "upper_age": " -None- ",
+                  "scheme_link": "https://meghalaya.gov.in/index.php/schemes/content/35908"
+                },
+                {
+                  "scheme_id": "07a2c13a-862a-407c-a3b4-57f135763ebf",
+                  "department": "Agriculture and Farmers' Welfare Department",
+                  "scheme_name": "Rashtriya Krishi Vikash Yojana-Remunerative Approaches for Agriculture and Allied Sector Rejuvenation (RKVY- RAFTAAR)",
+                  "description": "Holistic farm development with creation of infrastructures/farm machineries/Training in Agriculture and other Allied Sectors.",
+                  "scheme_beneficiary": "Farmers",
+                  "how_to_avail": "Bonafide farmers can apply in plain paper through the nearest Agriculture Development Officer of a CD Block/ Agriculture Circle.",
+                  "sponsors": "Shared",
+                  "lower_age": " -None- ",
+                  "upper_age": " -None- ",
+                  "funding": "Creation of infrastructures, capacity building etc.",
+                  "scheme_link": "https://meghalaya.gov.in/index.php/schemes/content/36271"
+                },
+                {
+                  "scheme_id": "6c436823-6f35-4d9b-a843-6739477c662b",
+                  "department": "Housing Department",
+                  "scheme_name": "Rural Housing Scheme (RHS)",
+                  "description": "In the year 1981-82, the Department introduced the Rural Housing Scheme(RHS) in which 3(three) bundles of CGI sheets were given as grant-in-aid to those who were able to construct their own house up to the roof level with their own resources and a total of 71,632 beneficiaries have benefitted. However, the impact of the scheme was found not to be at the desired level as many beneficiaries are found unable to construct their houses up to the roof level in the desirable manner due to the poor economic condition. So the Government has decided to discontinue the scheme and in its place decided to construct houses. With the objective of providing decent houses to the poor families in the State particularly in the Rural areas, the Department proposes to implement a New Housing Scheme called the “Chief Minister’s Housing Assistance Programmes” to replace the Rural Housing Scheme. Under this scheme 3(three) bundles of roofing materials will be provided for the EWS families and to provide dwelling houses to the LIG families with the objective of providing decent houses to the poor families. It is proposed to implement the new Chief Minister’s Housing Assistance Programme with the proposed outlay of Rs.20.00 crore to be earmarked under this scheme during the year 2016-17.",
+                  "scheme_beneficiary": "Government Employees, Individual,Community, Homeless and shelter less BPL Families, BPL Families, Physically challenged persons",
+                  "scheme_benefits": "House Site",
+                  "how_to_avail": "Visit the Concerned Department to avail the Scheme",
+                  "sponsors": "State",
+                  "lower_age": " -None- ",
+                  "scheme_link": "https://meghalaya.gov.in/schemes/content/37226"
+                },
+                {
+                  "scheme_id": "0fbae754-3660-46d9-b864-ebd88fdaa05f",
+                  "scheme_name": "Seed Farms",
+                  "description": "Production of high quality seeds of cereals, pulses, oilseeds etc. and for raising Horticultural seedlings such as orange, coconut, arecanut etc. for distribution to cultivators.",
+                  "scheme_beneficiary": "Farmers",
+                  "scheme_benefits": "Subsidy",
+                  "how_to_avail": "Bonafide farmers can apply in plain paper through the nearest Agriculture Development Officer of a CD Block/ Agriculture Circle.",
+                  "sponsors": "State",
+                  "lower_age": " -None- ",
+                  "upper_age": " -None- ",
+                  "introduced_on": "01 Apr 2013",
+                  "scheme_link": "https://meghalaya.gov.in/schemes/content/22711"
+                },
+                {
+                  "scheme_id": "53cd4d6f-3f36-424b-8108-08d85b3451a4",
+                  "department": "Education Department",
+                  "scheme_name": "State Talent Search Examination in Maths and Science for Tribal Students of Meghalaya at the Close of Upper Primary Stage ",
+                  "description": "i)\tStudents will avail the scholarship for two years\nii)\tStudents submit necessary documents to DERT\niii)\tDERT transfer scholarship directly to student’s bank account through  NEFT/RTGS",
+                  "scheme_beneficiary": "Students",
+                  "scheme_benefits": "Scholarship",
+                  "how_to_avail": "i)\tStudents applies through schools to SDSEOs\nii)\tSDSEOs will issue admit card and conduct exam\n\n\n\n\n\n",
                   "sponsors": "State",
                   "lower_age": " -None- ",
                   "upper_age": " -None- ",
                   "undefined": "ST",
                   "funding": "100%",
-                  "scheme_link": "https://meghalaya.gov.in/index.php/schemes/content/37593"
+                  "scheme_link": "https://meghalaya.gov.in/schemes/content/37591"
                 },
                 {
-                  "scheme_id": "5c847a1b-85b8-49c2-8b45-00babfa50054",
-                  "scheme_name": "Samagra Shiksha Abhiyan",
-                  "description": "The main outcomes of the Scheme are envisaged as Universal Access, Equity and Quality, promoting Vocationalisation of Education and strengthening of Teacher Education Institutions (TEIs)",
-                  "scheme_beneficiary": "Students, Teacher",
-                  "how_to_avail": "To avail all the entitlements under Samagra Shiksha Abhiyan, the schools category which are eligible are Govt, SSA and Govt aided. Except for salary of teachers, only SSA, RMSA teachers and Teachers Educator under DIETs are eligible",
-                  "sponsors": "Shared",
-                  "lower_age": "6",
-                  "upper_age": "17",
-                  "funding": "90% Central share, 10% State",
-                  "introduced_on": "01 Jan 2008",
-                  "scheme_link": "https://meghalaya.gov.in/schemes/content/37524"
-                },
-                {
-                  "scheme_id": "04b3f140-a63e-42f8-83be-3e31007984d0",
-                  "scheme_name": "Scholarship to 2 Years Pre-Service Student Teachers undergoing D.El.Ed programme at DIETs and CTTC Sohra",
-                  "description": "i)\tAs per NCTE notification 1st December 2014, admission procedure for a 2-year D.El.Ed Course shall be made on merit on the basis of marks obtained in the qualifying examination and/or in the entrance test. The purpose of having the entrance test is to tap the interest of the candidates who wishes to pursue his/her profession in teaching. \nii)\tVide letter No.D.O.No.63-22/2016/NCTE/Legal/31872 dated 27th June 2016, states that entrance Test to be one of the component in the selection procedure into 2 Year D.El.Ed programme for pre-service student-teacher.\niii)\tStudents undergoing the programme are given scholarship for two years i.e 1st year and 2nd year",
-                  "scheme_beneficiary": "Students",
-                  "scheme_benefits": "Scholarship",
-                  "how_to_avail": "i)\tClass XII passed or it's equivalent from recognized Boards/Council with 50%  marks and 5% relaxation for ST/SC/OBC/PWD\nii)\tEntrance Test and Counselling are conducted",
-                  "sponsors": "State",
-                  "lower_age": "18",
-                  "upper_age": "27",
-                  "funding": "100%",
-                  "introduced_on": "01 Jan 2012",
-                  "scheme_link": "https://meghalaya.gov.in/schemes/content/37592"
-                },
-                {
-                  "scheme_id": "612ef675-c7ff-48f4-b24e-7cfaa05c1b63",
+                  "scheme_id": "2116791b-6daf-4654-aa19-433a865ca653",
                   "scheme_name": "The Meghalaya Street Vendors (Protection of Livelihood and Regulation of Street Vending) Scheme, 2023",
                   "description": "The survey shall be carried out by forming area/ market wise teams consisting of Local authority and members of Town Vending Committee nominated or any such other agency/agencies as may be required for the purpose. The teams may be assisted by a technical data collection agency. Survey shall be done manually or through a mobile based application or a combination of both and might involve usage of one or more of the following tools:\n(i) GIS (Geographic Information System)\n(ii) Digitized photo census\n(iii) Capture of biometrics\nThe survey shall capture the primary data viz. name of the street vendor, gender, age, date of birth, place of birth, nature of trade/vending, period since start of vending on justifiable documentary evidence, address (present and permanent), contact number, whether Person with disability (PWD), identity proof (as specified below), application forms for additional information as prescribed by the local authority, and details of place, mode (stationary/ mobile/ other), nature and time of street vending as indicated in Form-I. For the purpose of identifying the street vendor, he/ she shall submit any one of the following documents:\n(i) Election Photo Identity Card issued by the Election Commission of India\n(ii) Aadhar Card\n(iii) Ration Card",
                   "scheme_beneficiary": "Citizen",
