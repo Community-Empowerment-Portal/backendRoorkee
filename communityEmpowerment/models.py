@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 import uuid
 from datetime import timedelta
+from django.conf import settings
 
 
 
@@ -48,7 +49,10 @@ class Department(TimeStampedModel):
         return self.department_name
     
     def get_group(self):
-        department_name = self.department_name.lower()
+        if self.department_name is not None:
+            department_name = self.department_name.lower()
+        else:
+            department_name = self.department_name
         
         
         EDUCATION_KEYWORDS = [
@@ -98,7 +102,9 @@ class Department(TimeStampedModel):
         ]
 
         # Check for each group and return the appropriate classification
-        if any(keyword in department_name for keyword in HEALTH_KEYWORDS):
+        if department_name is None:
+            return "Unclassified"
+        elif any(keyword in department_name for keyword in HEALTH_KEYWORDS):
             return "Health"
         elif any(keyword in department_name for keyword in SOCIAL_WELFARE_KEYWORDS):
             return "Social Welfare"
@@ -514,3 +520,34 @@ class SavedFilter(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.user.username})"
+    
+class SchemeReport(models.Model):
+    REPORT_CATEGORIES = [
+        ('incorrect_info', 'Incorrect Information'),
+        ('outdated_info', 'Outdated Information'),
+        ('other', 'Other'),
+    ]
+
+    scheme_id = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    report_category = models.CharField(max_length=50, choices=REPORT_CATEGORIES)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Report for Scheme {self.scheme_id} - {self.report_category}"
+
+class WebsiteFeedback(models.Model):
+    FEEDBACK_CATEGORIES = [
+        ('bug', 'Bug Report'),
+        ('improvement', 'Improvement Suggestion'),
+        ('general', 'General Feedback'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.CharField(max_length=50, choices=FEEDBACK_CATEGORIES)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback - {self.feedback_category}"

@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 from .models import (
     State, Department, Organisation, Scheme, Beneficiary, SchemeBeneficiary, Benefit, 
     Criteria, Procedure, Document, SchemeDocument, Sponsor, SchemeSponsor, CustomUser,
-    Banner, SavedFilter
+    Banner, SavedFilter, SchemeReport, WebsiteFeedback
 )
 from .serializers import (
     StateSerializer, DepartmentSerializer, OrganisationSerializer, SchemeSerializer, 
@@ -41,7 +41,7 @@ from .serializers import (
     CriteriaSerializer, ProcedureSerializer, DocumentSerializer, 
     SchemeDocumentSerializer, SponsorSerializer, SchemeSponsorSerializer, UserRegistrationSerializer,
     SaveSchemeSerializer, UserProfileSerializer, LoginSerializer, BannerSerializer, SavedFilterSerializer,
-    PasswordResetConfirmSerializer, PasswordResetRequestSerializer
+    PasswordResetConfirmSerializer, PasswordResetRequestSerializer, SchemeReportSerializer, WebsiteFeedbackSerializer
 )
 
 from rest_framework.exceptions import NotFound
@@ -942,4 +942,23 @@ class UserSavedSchemesFilterView(APIView):
         serializer = SchemeSerializer(saved_schemes, many=True)
         logger.debug(f"Non-Paginated Data: {serializer.data}")
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+class SchemeReportViewSet(viewsets.ModelViewSet):
+    queryset = SchemeReport.objects.all()
+    serializer_class = SchemeReportSerializer
+    permission_classes = [permissions.IsAuthenticated]  
+
+    def perform_create(self, serializer):
+        user = self.request.user if self.request.user.is_authenticated else None
+        serializer.save(user=user)
+
+class WebsiteFeedbackViewSet(viewsets.ModelViewSet):
+    queryset = WebsiteFeedback.objects.all()
+    serializer_class = WebsiteFeedbackSerializer
+    permission_classes = [permissions.IsAuthenticated] 
+
+    def perform_create(self, serializer):
+        user = self.request.user if self.request.user.is_authenticated else None
+        serializer.save(user=user)
 
