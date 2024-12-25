@@ -15,23 +15,25 @@ import django
 
 base_file_path = os.path.join(os.path.dirname(__file__),'..', 'scrapedData', 'scrapedPdfUrls', 'goaPdfUrl.json')
 absolute_file_path = os.path.abspath(base_file_path)
-AWS_ACCESS_KEY_ID = 'AKIA5G2VGV52YE3X5KAE'
-AWS_SECRET_ACCESS_KEY = ''
-AWS_STORAGE_BUCKET_NAME = 'launchpad-media'
-AWS_S3_REGION_NAME= 'ap-south-1'
+
+aws_access_key_id= settings.AWS_ACCESS_KEY_ID, 
+aws_secret_access_key= settings.AWS_SECRET_ACCESS_KEY, 
+region_name= settings.AWS_S3_REGION_NAME
+BUCKET_NAME = settings.AWS_STORAGE_BUCKET_NAME
+
 try:
 
 
     s3 = boto3.client('s3', 
-                    aws_access_key_id= AWS_ACCESS_KEY_ID, 
-                    aws_secret_access_key= AWS_SECRET_ACCESS_KEY, 
-                    region_name= AWS_S3_REGION_NAME)
+                    aws_access_key_id= aws_access_key_id, 
+                    aws_secret_access_key= aws_secret_access_key, 
+                    region_name= region_name)
     print("Successfully created S3 client!")
 except Exception as e:
     print(f"Error creating S3 client: {e}")
 
 
-BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
+BUCKET_NAME = BUCKET_NAME
 
 
 def encode_metadata_value(value):
