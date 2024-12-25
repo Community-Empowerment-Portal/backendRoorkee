@@ -1,19 +1,19 @@
 import boto3
 from django.conf import settings
 
-AWS_ACCESS_KEY_ID = 'AKIA5G2VGV52YE3X5KAE'
-AWS_SECRET_ACCESS_KEY = ''
-AWS_STORAGE_BUCKET_NAME = 'launchpad-media'
-AWS_S3_REGION_NAME= 'ap-south-1'
+aws_access_key_id= settings.AWS_ACCESS_KEY_ID, 
+aws_secret_access_key= settings.AWS_SECRET_ACCESS_KEY, 
+region_name= settings.AWS_S3_REGION_NAME
+BUCKET_NAME = settings.AWS_STORAGE_BUCKET_NAME
 
 s3 = boto3.client('s3', 
-                  aws_access_key_id= AWS_ACCESS_KEY_ID, 
-                  aws_secret_access_key= AWS_SECRET_ACCESS_KEY, 
-                  region_name= AWS_S3_REGION_NAME)
+                    aws_access_key_id= aws_access_key_id, 
+                    aws_secret_access_key= aws_secret_access_key, 
+                    region_name= region_name)
 
 
 
-BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
+BUCKET_NAME = BUCKET_NAME
 PREFIX = 'pdfs/jharkhand'
 
 def delete_pdfs_from_directory():
@@ -32,6 +32,7 @@ def delete_pdfs_from_directory():
         # print(f"All PDFs in {PREFIX} deleted.")
     
     except Exception as e:
-        print(f"Error deleting PDFs: {e}")
+        return e
+        # print(f"Error deleting PDFs: {e}")
 
 delete_pdfs_from_directory()
