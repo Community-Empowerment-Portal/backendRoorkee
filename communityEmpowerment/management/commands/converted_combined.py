@@ -1531,7 +1531,7 @@ def transform_and_add_goa_data(original_data, combined_data):
             "scheme_link": item.get("schemeUrl"),
             "pdf_url": item.get("pdfUrl"),
             "beneficiaries": [
-                {"beneficiary_type": item.get("beneficiary", "").strip()}
+                beneficiary_type["beneficiary_type"] for beneficiary_type in item.get("beneficiaries",[])
             ],
             "documents": [
                 {"document_name": document} for document in item.get("documents", [])
@@ -1649,7 +1649,7 @@ def transform_and_add_rajasthan_data(original_data, combined_data):
             "scheme_link": item.get("scheme_url"),  
             "pdf_url": item.get("pdfUrl"),  
             "beneficiaries": [
-                {"beneficiary_type": item.get("beneficiary", "").strip()}
+                beneficiary_type["beneficiary_type"] for beneficiary_type in item.get("beneficiaries",[])
             ],
             "documents": [
                 {"document_name": document} for document in item.get("documents", [])
@@ -1704,7 +1704,7 @@ def transform_and_add_tripura_data(original_data, combined_data):
             "description": description,
             "scheme_link": item.get("schemeUrl"),
             "beneficiaries": [
-                {"beneficiary_type": item.get("beneficiary", "").strip()}
+                beneficiary_type["beneficiary_type"] for beneficiary_type in item.get("beneficiaries",[])
             ],
             "documents": [
                 {"document_name": document} for document in item.get("documents", [])

@@ -1,5 +1,6 @@
 .env
 node_modules
+.DS_Store
 communityEmpowerment/migrations/
 communityEmpowerment/__pycache__/
 mysite/*
@@ -8,6 +9,7 @@ __pycache__/
 communityEmpowerment/migrations/
 communityEmpowerment/__pycache__/
 mysite/__pycache__/
+communityEmpowerment/.DS_Store
 
 __pycache__/
 
