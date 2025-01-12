@@ -6,8 +6,8 @@ s3 = boto3.client('s3',
                   aws_secret_access_key= settings.AWS_SECRET_ACCESS_KEY, 
                   region_name= settings.AWS_S3_REGION_NAME)
 
-BUCKET_NAME = settings.AWS_PDF_STORAGE_BUCKET_NAME 
-PREFIX = 'pdfs/goa'
+BUCKET_NAME = settings.AWS_STORAGE_BUCKET_NAME
+PREFIX = 'pdfs/jharkhand'
 
 def delete_pdfs_from_directory():
     try:
@@ -20,7 +20,7 @@ def delete_pdfs_from_directory():
         delete_objects = {
             'Objects': [{'Key': obj['Key']} for obj in response['Contents']]
         }
-        
+        print(delete_objects)
         s3.delete_objects(Bucket=BUCKET_NAME, Delete=delete_objects)
         # print(f"All PDFs in {PREFIX} deleted.")
     
