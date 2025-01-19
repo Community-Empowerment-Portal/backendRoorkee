@@ -993,7 +993,7 @@ class HybridRecommendationView(APIView):
 
         collaborative_schemes = collaborative_recommendations(user.id, top_n=top_n, keywords=keywords)
 
-        state_based_schemes = Scheme.objects.filter(department__state=user.state_of_residence)
+        state_based_schemes = Scheme.objects.filter(department__state__state_name=user.state_of_residence)
 
         final_recommendations = list(set(collaborative_schemes) | set(state_based_schemes))[:top_n]
 
