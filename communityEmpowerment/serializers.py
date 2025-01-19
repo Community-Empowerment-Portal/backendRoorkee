@@ -387,13 +387,21 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
     
 
 class SchemeReportSerializer(serializers.ModelSerializer):
+    scheme_id = serializers.IntegerField(write_only=True)
     class Meta:
         model = SchemeReport
         fields = ['id', 'scheme_id', 'report_category', 'description', 'created_at']
-        read_only_fields = ['created_at']
+        read_only_fields = ['created_at', 'scheme_name']
 
     def create(self, validated_data):
-        return SchemeReport.objects.create(**validated_data)
+        scheme_id = validated_data.pop('scheme_id')
+        try:
+            validated_data['scheme'] = Scheme.objects.get(id=scheme_id)
+        except Scheme.DoesNotExist:
+            raise serializers.ValidationError({'scheme_id': 'Invalid scheme ID.'})
+        
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)
 
 
 class WebsiteFeedbackSerializer(serializers.ModelSerializer):

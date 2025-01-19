@@ -528,7 +528,7 @@ class SchemeReport(models.Model):
         ('other', 'Other'),
     ]
 
-    scheme_id = models.IntegerField()
+    scheme = models.ForeignKey(Scheme, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     report_category = models.CharField(max_length=50, choices=REPORT_CATEGORIES)
     description = models.TextField()

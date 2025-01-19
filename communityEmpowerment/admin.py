@@ -67,8 +67,13 @@ class SchemeAdmin(ImportExportModelAdmin):
 
 @admin.register(SchemeReport)
 class SchemeReportAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user', 'scheme_id', 'created_at'] 
-    list_filter = ['created_at'] 
+    list_display = ['id', 'user', 'get_scheme_name', 'created_at'] 
+    list_filter = ['created_at']
+    def get_scheme_name(self, obj):
+        if obj.scheme:
+            return obj.scheme.title
+        return "No Scheme" 
+    get_scheme_name.short_description = 'Scheme Name'
 
 @admin.register(WebsiteFeedback)
 class WebsiteFeedbackAdmin(admin.ModelAdmin):
