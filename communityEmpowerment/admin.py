@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from import_export import resources
+from django.contrib.auth.models import Group, Permission
+
 from import_export.admin import ImportExportModelAdmin
 from .models import (
     State, Department, Organisation, Scheme, Beneficiary, SchemeBeneficiary,
@@ -29,10 +31,10 @@ class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     model = CustomUser
     list_display = ('username', 'email', 'is_staff', 'is_active', 'date_joined')
-    list_filter = ('is_staff', 'is_active')
+    list_filter = ('is_staff', 'is_active', 'groups')
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password')}),
-        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser','user_permissions', 'groups')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
@@ -44,6 +46,8 @@ class CustomUserAdmin(UserAdmin):
     readonly_fields = ('date_joined',)
     search_fields = ('username', 'email')
     ordering = ('username',)
+
+   
 
 admin.site.register(CustomUser, CustomUserAdmin)
 
@@ -80,3 +84,6 @@ class SchemeFeedbackAdmin(admin.ModelAdmin):
     list_display = ('user', 'scheme', 'feedback', 'rating', 'created_at')
     search_fields = ('user__username', 'scheme__title', 'feedback')
     list_filter = ('created_at', 'rating')
+
+
+admin.site.register(Permission)
