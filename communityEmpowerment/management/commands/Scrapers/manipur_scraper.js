@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
-(async () => {
+async function scrapeUkhrulDistrictSchemes(){
   const urls = [
     'https://ukhrul.nic.in/scheme/district-disability-rehabilitation-centre/',
     'https://ukhrul.nic.in/scheme/manipur-old-age-pension-scheme/',
@@ -21,7 +22,7 @@ const fs = require('fs');
   ];
 
   const scrapeData = async (page, url) => {
-    await page.goto(url, { waitUntil: 'networkidle2' });
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000  });
 
     const data = await page.evaluate((url) => {
       const schemes = [];
@@ -42,19 +43,59 @@ const fs = require('fs');
     return data;
   };
 
-  const browser = await puppeteer.launch({ headless: false }); // Set headless to false for debugging
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   let allSchemes = [];
   for (const url of urls) {
     const schemes = await scrapeData(page, url);
-    allSchemes = allSchemes.concat(schemes);
+    const updatedSchemeData = {...schemes[0], id: uuidv4()}
+    allSchemes = allSchemes.concat(updatedSchemeData);
   }
-
   await browser.close();
+  return allSchemes
+  
+
+
+}
+
+
+
+async function scrapeManipurScholarships(){
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto("https://manipurminority.gov.in/?page_id=220")
+  const result = await page.evaluate(()=>{
+    const schemeNodes = document.querySelectorAll(".single-page-article div ul li")
+    const schemeList = []
+
+    schemeNodes.forEach((node)=>{
+      const title = node.querySelector("h2").textContent.trim()
+      const description = node.querySelector("p").textContent.trim()
+      schemeList.push({
+        title,
+        description,
+        id: self.crypto.randomUUID(),
+        scheme_link: "https://scholarships.gov.in/"
+
+      })
+    })
+
+    return schemeList
+  })
+  await browser.close()
+  return result
+
+}
+scrapeManipurScholarships()
+
+async function main(){
+  const ukhrulDistrictSchemes = await scrapeUkhrulDistrictSchemes()
+  const manipurScholarships = await scrapeManipurScholarships()
+  const allSchemes = [...ukhrulDistrictSchemes, ...manipurScholarships]
   const targetDir = path.join(__dirname, '..','..','scrapedData');
   const filePath = path.join(targetDir, 'manipur.json');
   fs.writeFileSync(filePath, JSON.stringify(allSchemes, null, 2), 'utf-8');
+}
 
-  console.log('Data saved to manipur.json');
-})();
+main()
