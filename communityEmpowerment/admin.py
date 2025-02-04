@@ -6,7 +6,7 @@ from django.contrib.auth.models import Group, Permission
 from .models import (
     State, Department, Organisation, Scheme, Beneficiary, SchemeBeneficiary, 
     Benefit, Criteria, Procedure, Document, SchemeDocument, Sponsor, ProfileField, ProfileFieldChoice, ProfileFieldValue, CustomUser,
-    SchemeSponsor, CustomUser, Banner, Tag, SchemeReport, WebsiteFeedback, SchemeFeedback,
+    SchemeSponsor, CustomUser, Banner, Tag, SchemeReport, WebsiteFeedback, SchemeFeedback, Category
 )
 from django.db.models import Count
 from django.db.models import Min
@@ -17,21 +17,35 @@ admin.site.site_title = "Admin Portal"
 admin.site.index_title = "Welcome to your Admin Panel"
 
 admin.site.register(State)
- 
-
+    
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('category_display', 'tag_count', 'weight')
+    list_display = ('category_display', 'tag_count', 'related_tags_display', 'weight')
     list_filter = ('category',)
     search_fields = ('category',)
     ordering = ["category"]
+    # inlines = [TagInline]
+    def related_tags_display(self, obj):
+        # Get all tags related to the same category as the current tag
+        related_tags = Tag.objects.filter(category=obj.category)
+        related_tag_names = ", ".join([tag.name for tag in related_tags])
+        return related_tag_names
+
+    related_tags_display.short_description = "Related Tags"
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
 
         valid_categories = ["scholarship", "job", "sc", "st", "obc", "minority"]
+        # return (
+        #     queryset.filter(category__in=valid_categories)
+        #     .order_by('category')
+        #     .distinct('category')  
+        # )
+        valid_category_objects = Category.objects.filter(name__in=valid_categories)
+
         return (
-            queryset.filter(category__in=valid_categories)
+            queryset.filter(category__in=valid_category_objects)  # Use ForeignKey filtering
             .order_by('category')
-            .distinct('category')  
+            .distinct('category')
         )
 
     def category_display(self, obj):
@@ -44,6 +58,29 @@ class TagAdmin(admin.ModelAdmin):
         return obj.__class__.objects.filter(category=obj.category).count()
     
     tag_count.short_description = "Tag Count"
+
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        tag_instance = self.get_object(request, object_id)  # Get the current Tag instance
+        
+        # Fetch all related tags in the same category as the current tag
+        related_tags = Tag.objects.filter(category=tag_instance.category).exclude(id=tag_instance.id)  # Exclude the current tag itself
+        
+        # Limit the number of related tags shown initially (e.g., show 5 tags)
+        initial_related_tags = related_tags[:5]
+        
+        # Example custom data (you can replace this with any data you need)
+        custom_data = ["Custom info", "Other related data", "Example list item"]
+
+        # Add the related tags and custom data to the extra context
+        if extra_context is None:
+            extra_context = {}
+
+        extra_context['related_tags'] = initial_related_tags  # Add initial related tags to the context
+        extra_context['custom_data'] = custom_data  # Add any custom data you want to show
+        extra_context['all_related_tags'] = related_tags  # Add all related tags (for the "See All" option)
+
+        # Call the super method to render the change view with the extra context
+        return super().change_view(request, object_id, form_url, extra_context=extra_context)
 
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Department)

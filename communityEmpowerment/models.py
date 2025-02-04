@@ -153,6 +153,23 @@ class Organisation(TimeStampedModel):
     def __str__(self):
         return self.organisation_name or "N/A"
     
+class Category(models.Model):
+    name = models.CharField(
+        max_length=50, 
+        unique=True,
+        choices=[
+            ("scholarship", "Scholarship"),
+            ("job", "Job"),
+            ("sc", "Scheduled Caste (SC)"),
+            ("st", "Scheduled Tribe (ST)"),
+            ("obc", "Other Backward Classes (OBC)"),
+            ("minority", "Minority"),
+        ]
+    )
+
+    def __str__(self):
+        return self.name
+    
 class Tag(DirtyFieldsMixin,TimeStampedModel):
     CATEGORY_CHOICES = [
         ("scholarship", "Scholarship"),
@@ -165,7 +182,7 @@ class Tag(DirtyFieldsMixin,TimeStampedModel):
     ]
     name = models.CharField(max_length=255, unique=True)
     weight = models.FloatField(default=1.0)
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default="general")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="tags")
     class Meta:
         verbose_name = "Tag"
         verbose_name_plural = "Tags"
@@ -182,19 +199,19 @@ class Tag(DirtyFieldsMixin,TimeStampedModel):
         tag_lower = self.name.lower()
 
         if any(keyword in tag_lower for keyword in scholarship_keywords):
-            self.category = "scholarship"
+            self.category, _ = Category.objects.get_or_create(name="scholarship")
         elif any(keyword in tag_lower for keyword in job_keywords):
-            self.category = "job"
+            self.category, _ = Category.objects.get_or_create(name="job")
         elif any(keyword in tag_lower for keyword in sc_keywords):
-            self.category = "sc"
+            self.category, _ = Category.objects.get_or_create(name="sc")
         elif any(keyword in tag_lower for keyword in st_keywords):
-            self.category = "st"
+            self.category, _ = Category.objects.get_or_create(name="st")
         elif any(keyword in tag_lower for keyword in obc_keywords):
-            self.category = "obc"
+            self.category, _ = Category.objects.get_or_create(name="obc")
         elif any(keyword in tag_lower for keyword in minority_keywords):
-            self.category = "minority"
+            self.category, _ = Category.objects.get_or_create(name="minority")
         else:
-            self.category = "general"
+            self.category, _ = Category.objects.get_or_create(name="general")
 
         if self.pk: 
             old_tag = Tag.objects.get(pk=self.pk)

@@ -1,0 +1,43 @@
+{% extends "admin/change_form.html" %}
+
+{% block content %}
+  {{ block.super }}
+
+  <!-- Display Related Tags (Initially limited to 5 tags) -->
+  <div>
+    <h3>Related Tags (Same Category):</h3>
+    <ul id="related-tags-list">
+      {% for tag in related_tags %}
+        <li>{{ tag.name }} (Weight: {{ tag.weight }})</li>
+      {% endfor %}
+    </ul>
+
+    {% if all_related_tags.count > related_tags.count %}
+      <button id="show-more-btn">Show All Related Tags</button>
+    {% endif %}
+  </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+
+
+  <script>
+    var allRelatedTags = JSON.parse('{{ all_related_tags_json|escapejs }}');
+    document.getElementById('show-more-btn').addEventListener('click', function() {
+      var relatedTagsList = document.getElementById('related-tags-list');
+      
+      relatedTagsList.innerHTML = '';
+      
+      allRelatedTags.forEach(function(tag) {
+        var listItem = document.createElement('li');
+        listItem.textContent = tag.name + ' (Weight: ' + tag.weight + ')';
+        relatedTagsList.appendChild(listItem);
+      });
+
+      document.getElementById('show-more-btn').style.display = 'none';
+    });
+  </script>
+{% endblock %}
