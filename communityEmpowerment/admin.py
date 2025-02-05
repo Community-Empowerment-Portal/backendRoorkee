@@ -167,8 +167,6 @@ class ProfileFieldChoiceInline(admin.TabularInline):
         """Prevent adding new choices inline."""
         return False
 
-admin_site.register(ProfileField)
-
 class ProfileFieldAdmin(admin.ModelAdmin):
     list_display = ('name', 'field_type', 'is_active','position',)
     list_filter = ['is_active', 'field_type']
@@ -182,7 +180,7 @@ class ProfileFieldAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         """Disallow deleting fields."""
         return False
-
+admin_site.register(ProfileField, ProfileFieldAdmin)
 
 class ProfileFieldValueAdmin(admin.ModelAdmin):
     list_display = ('user', 'field', 'value')
