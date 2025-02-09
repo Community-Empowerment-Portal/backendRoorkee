@@ -765,10 +765,31 @@ class LayoutItem(models.Model):
     ]
     
     column_name = models.CharField(max_length=20, choices=COLUMN_CHOICES, unique=True)
+    is_active = models.BooleanField(default=False)
     order = models.IntegerField(default=0)  
 
     class Meta:
         ordering = ["order"] 
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            original_field = LayoutItem.objects.get(pk=self.pk)
+            if original_field.order != self.order:
+                self.shift_orders(original_field.order, self.order)
+
+        super(LayoutItem, self).save(*args, **kwargs)
+    
+    def shift_orders(self, old_order, new_order):
+        if old_order < new_order:
+            LayoutItem.objects.filter(
+                order__gt=old_order, order__lte=new_order
+            ).update(order=models.F('order') - 1)
+        elif old_order > new_order:
+            LayoutItem.objects.filter(
+                order__gte=new_order, order__lt=old_order
+            ).update(order=models.F('order') + 1)
+
+        self.order = new_order
 
     def __str__(self):
         return self.get_column_name_display()

@@ -272,8 +272,17 @@ admin.site.register(CustomUser, CustomUserAdmin)
 
 
 class LayoutItemAdmin(admin.ModelAdmin):
-    list_display = ("column_name", "order")
+    list_display = ("column_name", "order", 'is_active')
+    list_editable = ("order",'is_active')
     ordering = ("order",)
+    readonly_fields = ("column_name",)
+    def has_add_permission(self, request):
+        """Disallow adding new fields."""
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        """Disallow deleting fields."""
+        return False
 
 admin_site.register(LayoutItem, LayoutItemAdmin)
 
