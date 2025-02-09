@@ -1162,7 +1162,8 @@ class LayoutItemViewSet(viewsets.ViewSet):
 
     def list(self, request):
         """Return the current layout order."""
-        layout_items = LayoutItem.objects.order_by("order")
+        filteredItem = LayoutItem.objects.filter(is_active = True)
+        layout_items = filteredItem.order_by("order")
         serializer = LayoutItemSerializer(layout_items, many=True)
         return Response(serializer.data)
 
