@@ -198,29 +198,60 @@ class ProfileFieldInline(admin.TabularInline):
     def has_delete_permission(self, request, obj=None):
         return False
 
+
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ('username', 'email', 'is_active', 'is_staff', 'is_email_verified')
-    list_filter = ('is_active', 'is_staff', 'is_email_verified','groups')
-    search_fields = ('username', 'email')
-    ordering = ('username',)
+    list_display = ("username", "email", "is_active", "is_staff", "is_email_verified")
+    list_filter = ("is_active", "is_staff", "is_email_verified", "groups")
+    search_fields = ("username", "email")
+    ordering = ("username",)
 
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password')}),
-        ('Personal Info', {'fields': ['name']}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_email_verified', 'groups', 'user_permissions')}),
-        ('Important Dates', {'fields': ['last_login']}),
+        (None, {"fields": ("username", "email", "password")}),
+        ("Personal Info", {"fields": ["name"]}),
+        ("Important Dates", {"fields": ["last_login"]}),
     )
     add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('username', 'email', 'password1', 'password2', 'is_active', 'is_staff'),
-        }),
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": (
+                    "username",
+                    "email",
+                    "password1",
+                    "password2",
+                    "is_active",
+                    "is_staff",
+                ),
+            },
+        ),
     )
     inlines = [ProfileFieldInline]
 
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = list(super().get_fieldsets(request, obj))
+
+        # Show permissions section only if the user is marked as staff
+        if obj and obj.is_staff:
+            fieldsets.append(
+                (
+                    "Permissions",
+                    {
+                        "fields": (
+                            "groups",
+                            "user_permissions",
+                            'is_email_verified',
+                        )
+                    },
+                )
+            )
+
+        return fieldsets
+
 
 admin_site.register(CustomUser, CustomUserAdmin)
+
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ('category_display', 'tag_count', 'weight')
