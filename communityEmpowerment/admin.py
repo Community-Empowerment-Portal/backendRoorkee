@@ -241,6 +241,7 @@ class CustomUserAdmin(UserAdmin):
                         "fields": (
                             "groups",
                             "user_permissions",
+                            'is_email_verified',
                         )
                     },
                 )
