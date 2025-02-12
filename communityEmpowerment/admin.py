@@ -15,6 +15,7 @@ from .models import (
 from django.db.models import Count
 from django.db.models import Min
 from orderable.admin import OrderableAdmin
+from django.utils.html import format_html
 # Custom Admin Site
 class CustomAdminSite(admin.AdminSite):
     site_header = "Community Empowerment Portal Admin Panel"
@@ -254,10 +255,11 @@ admin_site.register(CustomUser, CustomUserAdmin)
 
 
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('category_display', 'tag_count', 'weight')
+    list_display = ('category_display', 'tag_count', 'weight', 'tag_names_preview')
     list_filter = ('category',)
     search_fields = ('category',)
     ordering = ["category"]
+    readonly_fields = ("tag_names",)
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
 
@@ -278,6 +280,38 @@ class TagAdmin(admin.ModelAdmin):
         return obj.__class__.objects.filter(category=obj.category).count()
     
     tag_count.short_description = "Tag Count"
+
+    def tag_names(self, obj):
+        """ Show first 5 tags in detail view, with 'Show All' button """
+        tags = list(Tag.objects.filter(category=obj.category).values_list('name', flat=True))
+        
+        if not tags:
+            return "No Tags"
+        
+        preview_tags = tags[:5]
+        preview_text = ", ".join(preview_tags)
+        
+        if len(tags) > 5:
+            full_text = ", ".join(tags)
+            return format_html(
+                f'<span class="tag-preview">{preview_text}</span>'
+                f'<span class="tag-full" style="display:none;">{full_text}</span> '
+                f'<a href="#" class="show-all-btn" onclick="showFullTags(this); return false;">Show All</a>'
+            )
+        else:
+            return preview_text
+
+    tag_names.short_description = "Tag Names"
+
+    def tag_names_preview(self, obj):
+        """ Show first 5 tags in list view with 'Show All' button """
+        return self.tag_names(obj)
+
+    tag_names_preview.short_description = "Tag Names Preview"
+
+    class Media:
+        """ Inject JavaScript for 'Show All' functionality """
+        js = ('admin/js/show_tags.js',)
 
 admin_site.register(Tag, TagAdmin)
 
