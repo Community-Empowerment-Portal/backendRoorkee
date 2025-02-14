@@ -381,5 +381,90 @@
       "documents": [],
       "criteria": [],
       "id": "1420904f-47a4-42d1-8a2a-c5267bc9e413"
-  }
+  },
+  {
+    "title": "IRDP Scholarship  (PDF, 178 KB)",
+    "pdfUrl": "https://himachal.nic.in/WriteReadData/l892s/16_l892s/img20240619_16242492-17491825.pdf",
+    "schemeUrl": "https://himachal.nic.in/index1.php?lang=1&dpt_id=16&level=2&lid=24092&sublinkid=24929"
+},
+{
+    "description": "Medhavi Scholarship for students in Himachal.",
+    "tags": [
+        "scholarship",
+        "students",
+        "Himachal",
+        "education",
+        "merit-based"
+    ],
+    "beneficiaries": [
+        {
+            "beneficiary_type": "Students"
+        }
+    ],
+    "procedures": [],
+    "sponsors": [],
+    "valid_upto": "Not specified",
+    "scheme_link": "https://himachal.nic.in/WriteReadData/l892s/16_l892s/img20240619_16252647-50663519.pdf",
+    "introduced_on": "Not specified",
+    "title": "Medhavi Scholarship",
+    "funding_pattern": "Not specified",
+    "criteria": [
+        {
+            "description": "Merit-based"
+        }
+    ],
+    "documents": [
+        "https://himachal.nic.in/WriteReadData/l892s/16_l892s/img20240619_16252647-50663519.pdf"
+    ],
+    "schemeUrl": "https://himachal.nic.in/index1.php?lang=1&dpt_id=16&level=2&lid=24092&sublinkid=24929"
+},
+{
+    "title": "HP Swaran Jayanti Scholarship Scheme for Govt. schools. (PDF, 1335 KB)",
+    "pdfUrl": "https://himachal.nic.in/WriteReadData/l892s/16_l892s/img20240619_16081326-23584997.pdf",
+    "schemeUrl": "https://himachal.nic.in/index1.php?lang=1&dpt_id=16&level=2&lid=24092&sublinkid=24929"
+},
+{
+    "description": "Lahaul-Spiti Pattern",
+    "beneficiaries": [],
+    "tags": [
+        "scholarship",
+        "Lahaul-Spiti"
+    ],
+    "procedures": [],
+    "sponsors": [],
+    "valid_upto": "",
+    "introduced_on": "19/06/2024",
+    "scheme_link": "https://himachal.nic.in/WriteReadData/l892s/16_l892s/img20240619_16254125-16215376.pdf",
+    "title": "Scholarship on Lahaul-Spiti Pattern",
+    "funding_pattern": "scholarship",
+    "criteria": [],
+    "documents": [
+        "https://himachal.nic.in/WriteReadData/l892s/16_l892s/img20240619_16254125-16215376.pdf"
+    ],
+    "schemeUrl": "https://himachal.nic.in/index1.php?lang=1&dpt_id=16&level=2&lid=24092&sublinkid=24929"
+},
+{
+    "description": "Scholarship program for the children of Defense Personnel. Details available in the linked PDF.",
+    "tags": [
+        "scholarship",
+        "education",
+        "defense personnel",
+        "children"
+    ],
+    "beneficiaries": [
+        {
+            "beneficiary_type": "Children of Defense Personnel"
+        }
+    ],
+    "procedures": [],
+    "sponsors": [],
+    "valid_upto": "",
+    "funding_pattern": "Not specified",
+    "scheme_link": "https://himachal.nic.in/WriteReadData/l892s/16_l892s/img20240619_16260152-70299282.pdf",
+    "title": "Scholarship to the children of Defense Personnel",
+    "introduced_on": "",
+    "documents": [],
+    "criteria": [],
+    "schemeUrl": "https://himachal.nic.in/index1.php?lang=1&dpt_id=16&level=2&lid=24092&sublinkid=24929"
+}
 ]
