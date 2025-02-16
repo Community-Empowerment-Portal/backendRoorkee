@@ -5,8 +5,11 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import serializers
 from django.utils.decorators import method_decorator
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import action
+from django.db.models import Count
+from django.utils.timezone import now
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken
@@ -36,7 +39,7 @@ logger = logging.getLogger(__name__)
 from .models import (
     State, Department, Organisation, Scheme, Beneficiary, SchemeBeneficiary, Benefit, LayoutItem,
     Criteria, Procedure, Document, SchemeDocument, Sponsor, SchemeSponsor, CustomUser, ProfileField,
-    Banner, SavedFilter, SchemeReport, WebsiteFeedback, UserInteraction, SchemeFeedback, UserEvent, ProfileFieldValue
+    Banner, SavedFilter, SchemeReport, WebsiteFeedback, UserInteraction, SchemeFeedback, UserEvent,UserEvents, ProfileFieldValue
     
 )
 from .serializers import (
@@ -46,7 +49,7 @@ from .serializers import (
     SchemeDocumentSerializer, SponsorSerializer, SchemeSponsorSerializer, UserRegistrationSerializer,
     SaveSchemeSerializer,  LoginSerializer, BannerSerializer, SavedFilterSerializer,
     PasswordResetConfirmSerializer, PasswordResetRequestSerializer, SchemeReportSerializer, WebsiteFeedbackSerializer,
-    UserInteractionSerializer, SchemeFeedbackSerializer, UserEventSerializer, UserProfileSerializer
+    UserInteractionSerializer, SchemeFeedbackSerializer, UserEventSerializer, UserProfileSerializer, UserEventsSerializer
 )
 
 from rest_framework.exceptions import NotFound
@@ -1181,3 +1184,30 @@ class LayoutItemViewSet(viewsets.ViewSet):
                 return Response({"error": f"LayoutItem with id {item['id']} not found"}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({"message": "Order updated successfully"})
+    
+
+class UserEventsViewSet(viewsets.ModelViewSet):
+    queryset = UserEvents.objects.all().order_by('-timestamp')
+    serializer_class = UserEventsSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    @action(detail=False, methods=['post'])
+    def log_event(self, request):
+        data = request.data.copy()
+        data['user'] = request.user.id
+        data['timestamp'] = now()
+        data['ip_address'] = request.META.get('REMOTE_ADDR')
+        data['user_agent'] = request.META.get('HTTP_USER_AGENT')
+
+        serializer = self.get_serializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Event logged successfully"}, status=201)
+        return Response(serializer.errors, status=400)
+    
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def get_event_stats(request):
+    stats = UserEvents.objects.values('event_type').annotate(count=Count('event_type')).order_by('-count')
+    return Response(stats)

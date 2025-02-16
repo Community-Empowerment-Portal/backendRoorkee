@@ -68,7 +68,9 @@ from .views import (
     SchemeFeedbackListView,
     TrackEventView,
     AllProfileFieldsView,
-    LayoutItemViewSet
+    LayoutItemViewSet,
+    UserEventsViewSet,
+    get_event_stats
 
 )
 
@@ -148,4 +150,6 @@ urlpatterns = [
     path('dynamic-fields/', AllProfileFieldsView.as_view(), name='all_dynamic_fields'),
     path("layout-items/", LayoutItemViewSet.as_view({"get": "list"}), name="layout-items-list"),
     path("layout-items/update-order/", LayoutItemViewSet.as_view({"post": "update_order"}), name="layout-items-update"),
+    path("events/log/", UserEventsViewSet.as_view({"post": "log_event"}), name="log-user-event"),
+    path("events/stats/", get_event_stats, name="event-stats"),
 ]
