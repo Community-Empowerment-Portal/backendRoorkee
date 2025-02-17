@@ -794,3 +794,27 @@ class LayoutItem(models.Model):
     def __str__(self):
         return self.get_column_name_display()
 
+
+class UserEvents(models.Model):
+    EVENT_TYPES = [
+        ('view', 'Scheme View'),
+        ('filter', 'Filter Applied'),
+        ('search', 'Search Query'),
+        ('sort', 'Sorting Action'),
+        ('apply', 'External Apply'),
+        ('save', 'Save'),
+        ('download', 'Download'),
+        ('share', 'Share'),
+        ('error', 'Error Event'),
+    ]
+    
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    event_type = models.CharField(max_length=20, choices=EVENT_TYPES)
+    scheme_id = models.IntegerField(null=True, blank=True)
+    details = models.JSONField(blank=True, null=True) 
+    timestamp = models.DateTimeField(auto_now_add=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    user_agent = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user} - {self.event_type} - {self.timestamp}"

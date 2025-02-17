@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import (State, Department, Organisation, Scheme, Beneficiary, SchemeBeneficiary, Benefit, Criteria
                      , Procedure, Document, SchemeDocument, Sponsor, SchemeSponsor, CustomUser,Banner, SavedFilter, LayoutItem,
-                      SchemeReport, WebsiteFeedback, Tag, UserInteraction, SchemeFeedback, UserEvent, ProfileField, ProfileFieldChoice, ProfileFieldValue )
+                      SchemeReport, WebsiteFeedback, Tag, UserInteraction, SchemeFeedback, UserEvent, UserEvents, ProfileField, ProfileFieldChoice, ProfileFieldValue )
 from django.utils import timezone
 from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
@@ -586,3 +586,9 @@ class LayoutItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = LayoutItem
         fields = ["id", "column_name", "order"]
+
+
+class UserEventsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserEvents
+        fields = '__all__'
