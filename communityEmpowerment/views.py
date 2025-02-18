@@ -58,6 +58,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 User = get_user_model()
 
+def health_check(request):
+    return JsonResponse({"status": "healthy"}, status=200)
+
 class SchemePagination(PageNumberPagination):
     page_size_query_param = 'limit'
 
