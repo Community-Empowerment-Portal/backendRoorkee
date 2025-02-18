@@ -67,6 +67,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Conditionally add CacheMiddleware for production
+if os.getenv('ENVIRONMENT') == 'production':
+    MIDDLEWARE.insert(2, 'communityEmpowerment.middleware.CacheMiddleware') 
+
 AUTHENTICATION_BACKENDS = [
     'communityEmpowerment.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -214,6 +218,23 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 MEDIA_URL = f"https://{AWS_S3_MEDIA_CUSTOM_DOMAIN}/media/"
 
+
+REDIS_HOST = os.getenv('REDIS_HOST')
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': f'rediss://{REDIS_HOST}/0',  # Using f-string for interpola>
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'CONNECTION_POOL_KWARGS': {
+                'max_connections': 100,
+                'retry_on_timeout': True,
+            }
+        }
+    }
+}
+
+
 # Celery configuration
 # REDIS_HOST = os.getenv('REDIS_HOST')
 # REDIS_PORT = os.getenv('REDIS_PORT')
@@ -223,71 +244,6 @@ MEDIA_URL = f"https://{AWS_S3_MEDIA_CUSTOM_DOMAIN}/media/"
 # CELERY_ACCEPT_CONTENT = ['json']
 # CELERY_TIMEZONE = 'UTC'
 # CELERY_ENABLE_UTC = True
-# REDIS_HOST = os.getenv('REDIS_HOST')
-# REDIS_PORT = os.getenv('REDIS_PORT')
-# CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0' # CELERY_RESULT_BACKEND = CELE>
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_SERIALIZER = 'json'
-# CELERY_ACCEPT_CONTENT = ['json']
-# CELERY_TIMEZONE = 'UTC'
-# CELERY_ENABLE_UTC = True
-
-#  # settings.py
-# CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
-# CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-#  # settings.py
-# CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
-# CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-
-# # Cacheops settings
-# CACHES = {
-#      'default': {
-#          'BACKEND': 'django_redis.cache.RedisCache',
-#          'LOCATION':  f'redis://{REDIS_HOST}:{REDIS_PORT}/1',  # Make sure this is correct
-#          'OPTIONS': {
-#              'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-#         }
-#     }
-# }
-# CACHEOPS_REDIS = {
-#      'host': REDIS_HOST,  # Redis host
-#      'port': REDIS_PORT,         # Redis port
-#      'db': 1,              # Redis db
-#      'password': None,     # Redis password if any
-#      'socket_timeout': 3,
-# }
-# # Cacheops settings
-# CACHES = {
-#      'default': {
-#          'BACKEND': 'django_redis.cache.RedisCache',
-#          'LOCATION':  f'redis://{REDIS_HOST}:{REDIS_PORT}/1',  # Make sure this is correct
-#          'OPTIONS': {
-#              'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-#         }
-#     }
-# }
-# CACHEOPS_REDIS = {
-#      'host': REDIS_HOST,  # Redis host
-#      'port': REDIS_PORT,         # Redis port
-#      'db': 1,              # Redis db
-#      'password': None,     # Redis password if any
-#      'socket_timeout': 3,
-# }
-
-# CACHEOPS_DEFAULTS = {
-#      'timeout': 60*15  # 15 minutes
-# }
-# CACHEOPS_DEFAULTS = {
-#      'timeout': 60*15  # 15 minutes
-# }
-
-# CACHEOPS = {
-#      'myapp.*': {'ops': 'all', 'timeout': 60*60},
-
-# }
-# }
-
-
 
 
 

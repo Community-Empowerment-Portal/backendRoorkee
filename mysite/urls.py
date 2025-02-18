@@ -19,12 +19,13 @@ from communityEmpowerment.admin import admin_site
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from communityEmpowerment.views import health_check
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('admin/', admin_site.urls),
     path('api/', include('communityEmpowerment.urls')),
-
+    path('health/', health_check, name='health_check'),
 ]
 
 if settings.DEBUG:
